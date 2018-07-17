@@ -33,9 +33,11 @@ output:
 ---
 ```
 
-If you click 'Knit', the 
+If you click 'Knit', the CHI proceedings template with sample content should compile correctly:
+![step 1 compiled](figures/step1-compiled.png "Step 1 compiled")
 
-## Step 2. Adjust the LaTeX template to include the R Markdown as body text
+## Step 2. Adjust the LaTeX template to include your content
+
 
 ## Step 3. Make sure citations are shown correctly
 
