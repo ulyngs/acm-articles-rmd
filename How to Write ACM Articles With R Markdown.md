@@ -37,7 +37,23 @@ If you click 'Knit', the CHI proceedings template with sample content should com
 ![step 1 compiled](figures/step1-compiled.png "Step 1 compiled")
 
 ## Step 2. Adjust the LaTeX template to include your content
+Ok, so now we know how to compile to an arbitrary template without putting in any content. What we need to know now is how to automatically put in the content we write in R Markdown.
 
+To do that, we need to know that [pandoc](https://pandoc.org), when compiling from R Markdown to LaTeX, treats text put in $between dollar signs$ in the LaTeX template as a variable to go find in the R Markdown file.
+
+So, for example, if I in sample-sigchi.tex change `\title{SIG Proceedings Paper in LaTeX Format}` to `\title{$title$}`, then pandoc will go look for a variable `title` in the YAML header of the R Markdown file and plug that in to the LaTeX template.
+
+So here we have a choice: We could go all the way and put *all of the meta data and random LaTeX settings for the paper into the YAML header*, kinda like what I think has been the idea behind the ['rticles' package](https://github.com/rstudio/rticles). 
+
+I started doing this, but thought a bit about it and concluded that **this is a terrible idea**, because we then must keep on top of the detail of all changes that might be made in the future to the ACM LaTeX template. Rather, the route of least effort is to simply make **just minimal changes** that allow us to plug in the body text from the R Markdown document, so that we can reuse all the hard work we put in to writing this body text in the R Markdown format when we output it elsewhere. If the ACM LaTeX template changes in the future, then we'll just make these minimal changes again to make it work.
+
+I concluded that the route of least effort is the following:
+1. Plug in paper title from the YAML header. (explained above; in the Rmd file we will add something like this to the YAML header: `title: This is the Greatest and Best Paper in the World (Tribute)`
+2. Plug in bibliography file from the YAML header (in sample-sigchi.tex, after `\bibliographystyle` change `\bibliography{sample-bibliography}` to `$bibliography$`. Then add something like `bibliography: my-bibliography.bib` to the YAML header of your Rmd file.)
+3. Plug in abstract from the Rmd file (in sample-sigchi.tex, replace the text in between `\begin{abstract}` and `\end{abstract}` with simply `$abstract$`. Then add something like `abstract: This is the greatest and best abstract in the world. Tribute.` to your YAML header.)
+4. Plug in paper content from the Rmd file (in sample-sigchi.tex, after `\maketitle` change `\input{samplebody-conf}` to `$body$`. This will make pandoc plug in any content after the YAML header into this section)
+
+All other metadata (author names, whether you need title notes, etc.) you will just set directly in sample-sigchi.tex - it's just not worth the effort (I think) to set up variables in your YAML header for this.
 
 ## Step 3. Make sure citations are shown correctly
 
