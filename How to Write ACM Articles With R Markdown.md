@@ -13,8 +13,27 @@ Besides, for the next CHI conference, it turns out the ACM just updated the temp
 Turns out the answer is very simple, but it took me way longer to figure out that it should have done, as I couldn't really find the right advice anywhere. **Here's how to do it:**
 
 ## Step 1. Understand how to use (the ACM) LaTeX template with R Markdown
-So first things first. In order to use the ACM template, we'd download the latest version [from here] (https://www.acm.org/publications/proceedings-template) - but for the purposes of this tutorial, you can just download the zip 
+So first things first. In order to use the ACM template, we'd download the latest version [from here] (https://www.acm.org/publications/proceedings-template) - but for the purposes of this tutorial, clone or download [this GitHub repo] (https://github.com/ulyngs/acm-articles-rmd). Then open the R Project file in the 'step1' folder.
 
+![step 1 files](figures/step1-files.png "Step 1 files")
+
+This folder contains the essential files to make the sigchi proceedings template work (it's just a subset of the files in the acmart-master folder that you can download on the ACM page linked to above):
+- acmart.cls provides the LaTeX class for the new ACM master template
+- ACM-Reference-Format.bst provides the bibliography formatting
+- sample-sigchi.tex provides the LaTeX template for sigchi-proceedings (as you can read in the documentation in acmart.phf, you just change the article format in this LaTeX template in order to output a format for e.g. sigchi-extended abstracts rather than the proceedings format)
+- all the other files are just there to provide the sample content that's shown by default in the template - images (files.eps, fly.eps, rosette.eps, and sampleteaser.pdf), bibliography (sample-bibliography.bib), and sample content (samplebody-conf.tex)
+
+Now, as you will see if you open step1.Rmd, the only thing we need to include in the r markdown file to use the CHI template is the following YAML header:
+
+```
+---
+output:
+	pdf_document:
+		template: sample-sigchi.tex
+---
+```
+
+If you click 'Knit', the 
 
 ## Step 2. Adjust the LaTeX template to include the R Markdown as body text
 
