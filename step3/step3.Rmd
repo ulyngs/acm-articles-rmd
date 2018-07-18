@@ -2,6 +2,7 @@
 output: 
   pdf_document:
     template: sample-sigchi.tex
+    keep_tex: true
     citation_package: natbib
 title: This is the Greatest and Best Paper in the World (Tribute)
 abstract: This is the greatest and best abstract in the world. Tribute.
