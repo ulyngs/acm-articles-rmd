@@ -1,6 +1,6 @@
-# How to Write ACM Articles With R Markdown
+# How to Write ACM Articles With R Markdown (Or: Why the `rticles` Package Did Not Help Me)
 
-I love [R Markdown] (https://bookdown.org/yihui/rmarkdown/). I use R for almost all my data analyses and visualisations these days, and R Markdown documents helps me keep a kind of interactive lab notebook that reminds me of the steps I took - and why - and makes it quick and easy to reproduce everything.
+I love [R Markdown] (https://bookdown.org/yihui/rmarkdown/). I use R for almost all my data analyses and visualisations these days, and Rmd files helps me keep an interactive lab notebook that reminds me of the steps I took --- and why --- while making it quick and easy to reproduce everything.
 
 Like many others (e.g. [here] (https://rosannavanhespenresearch.wordpress.com/2016/02/03/writing-your-thesis-with-r-markdown-1-getting-started/), [here] (https://eddjberry.netlify.com/post/writing-your-thesis-with-bookdown/), and [here] (https://github.com/benmarwick/huskydown)), I too am planning to write my entire PhD thesis in R Markdown. The benefits are obvious, as other blog posts and online publications have already pointed out: First, you reduce the risk of mistakes by doing your academic write-up in the very same file as you use to produce the analysis outputs - when you update analysis code, the output plots are automatically updated too (this [wonderful YouTube video] (https://youtu.be/s3JldKoA0zw) will remind you that this is important and how awesome you will feel when you do things write). Second, you save yourself effort if you e.g. want to publish your thesis as an ebook or physical book afterwards, or if you usually write in LaTeX but collaborate with MS Word users: From the same R Markdown file, you can export to the format you need. 
 
@@ -210,8 +210,23 @@ However, since the formatting of tables in LaTeX is quite fiddly anyway, this is
 
 
 ## Step 6. Referencing our figures and tables
-The maturation of the song over time is shown in Figure \@ref(fig:tribute-plot). 
-<!-- alternatively this standard LaTeX syntax: \ref{fig:col-width-tribute-plot} -->
+Now finally, how do we reference our figures and tables? Two options - the first is to simply use the standard LaTeX syntax (you can use any LaTeX within your R Markdown file). For example:
+
+```
+The maturation of the song over time is shown in Figure \ref{fig:col-width-tribute-plot}.
+```
+
+That's fine, but if you want to keep the option of outputting to another format in the future, e.g. gitbook or Word, you'll want to use bookdown's slightly different syntax:
+
+```
+The maturation of the song over time is shown in Figure \@ref(fig:tribute-plot).
+```
+
+Either way, the .tex output is the same, and so is the result:
+![step 6](figures/step6.png "Step 6")
+
 
 ## Step 6. Celebrate!
+You now know how to use R Markdown alongside the ACM master templates. Yay for reproducible research!
 
+This blog post is probably way more longwinded than was necessary. Hopefully it'll nevertheless speed up the process for others who'd like to use R Markdown for science writing in general and find themselves trying to solve the same puzzles as I had to!
