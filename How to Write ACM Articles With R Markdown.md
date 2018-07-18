@@ -150,6 +150,8 @@ And the output again looks correct (it's floating to a new page in our case):
 ## Step 5. Handling tables
 
 ## Step 6. Referencing our figures and tables
+The maturation of the song over time is shown in Figure \@ref(fig:tribute-plot). 
+<!-- alternatively this standard LaTeX syntax: \ref{fig:col-width-tribute-plot} -->
 
 ## Step 6. Celebrate!
 
