@@ -1,6 +1,6 @@
 ---
 output: 
-  pdf_document:
+  bookdown::pdf_book:
     template: sample-sigchi.tex
 ---
 

@@ -4,6 +4,7 @@ output:
     template: sample-sigchi.tex
     keep_tex: true
     citation_package: natbib
+    fig_caption: true
 title: This is the Greatest and Best Paper in the World (Tribute)
 abstract: This is the greatest and best abstract in the world. Tribute.
 bibliography: my-bibliography.bib
@@ -13,7 +14,17 @@ bibliography: my-bibliography.bib
 "Tribute" is the first single of Tenacious D's self-titled debut album[@Cowan1988; @Whittaker2016-time-info]. It was released July 16, 2002. The song is a tribute to what Gass and Black refer to as "The Greatest Song in the World" (often confused as the song's title), which Tenacious D themselves came up with, but have since forgotten. It was released as a downloadable track for Rock Band in addition to appearing as a playable track for Guitar Hero Live.[@Hume1748]
 
 # History
-Tribute was the first song Black and Gass played live as Tenacious D. The song, like many other songs that were recorded on Tenacious D, was originally performed on their short-lived HBO TV series. During earlier performances of this song Kyle Gass played the opening to "Stairway to Heaven". The two songs are both in A minor and have very similar chord progressions, and critics have said the songs sound alike.[@Cowan1988; @Gluck2005; @Wardak2002]
+Tribute was the first song Black and Gass played live as Tenacious D. The song, like many other songs that were recorded on Tenacious D, was originally performed on their short-lived HBO TV series. During earlier performances of this song Kyle Gass played the opening to "Stairway to Heaven". The two songs are both in A minor and have very similar chord progressions, and critics have said the songs sound alike.[@Cowan1988; @Gluck2005; @Wardak2002] The maturation of the song over time is shown in Figure \@ref(fig:tribute-plot). 
+<!-- alternatively this: \ref{fig:col-width-tribute-plot} -->
+
+```{r tribute-plot, echo=FALSE, out.width='0.98\\columnwidth', fig.cap="This is how great Tribute gets over time"}
+plot(pressure)
+```
+
+```{r two-col-tribute-plot, echo=FALSE, out.width='0.98\\textwidth', fig.cap="This is a two-column plot of how great Tribute gets over time", fig.env='figure*'}
+plot(pressure)
+```
+
 
 ## Synopsis
 The song chronicles the band members' encounter with a demon who demands the duo play "the best song in the world" or have their souls eaten. Having nothing to lose from trying, they play "the first thing that came to our heads", and it "just so happened to be the best song in the world."[@Wardak2002]
