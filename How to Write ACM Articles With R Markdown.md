@@ -99,8 +99,7 @@ First, in our YAML header add `fig_caption: true` under `bookdown::pdf_book`. Th
 Then, in our body text after the 'History' paragraph, add the following chunk of R code:
 
 ````
-```
-{r tribute-plot, echo=FALSE, out.width='0.98\\columnwidth', fig.cap="This is a column-width plot of how great Tribute gets over time"}
+```{r tribute-plot, echo=FALSE, out.width='0.98\\columnwidth', fig.cap="This is a column-width plot of how great Tribute gets over time"}
 plot(pressure)
 ```
 ````
@@ -126,8 +125,7 @@ And the output looks as we'd expect:
 The acm-article template also tells us that to include a figure that spans two columns, we want to put it in a `figure*` environment rather than simply a `figure` environment. How do we do this? Easy, we just add `fig.env='figure*'` to the chunk options:
 
 ````
-```
-{r two-col-tribute-plot, echo=FALSE, out.width='0.98\\textwidth', fig.cap="This is a two-column plot of how great Tribute gets over time", fig.env='figure*'}
+```{r two-col-tribute-plot, echo=FALSE, out.width='0.98\\textwidth', fig.cap="This is a two-column plot of how great Tribute gets over time", fig.env='figure*'}
 plot(pressure)
 ```
 ````
@@ -148,6 +146,68 @@ And the output again looks correct (it's floating to a new page in our case):
 ![step 4 two-colwidth](figures/step4-two-colwidth.png "Step 4 two-colwidth")
 
 ## Step 5. Handling tables
+To automatically grab data from our analyses and put it into the paper, we'll use the ['kable' function](https://bookdown.org/yihui/rmarkdown/r-code.html#tables).
+
+For this example, let's first load the tidyverse package so we can use the usual piping operator. Let's add this chunk before the introduction:
+
+````
+```{r setup, include=FALSE, message=FALSE}
+library(tidyverse)
+```
+````
+
+(`include=FALSE` means we don't want any output from this to actually be included in the output, and `message=FALSE` similarly ensures that messages that are shown when a library is loaded are not being interpreted as LaTeX commands. We just want to load the tidyverse library, nothing more, nothing less.)
+
+Now, let's include a subset of the [iris dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set) as a table in our article. We add this chunk after the Synopsis section:
+
+````
+```{r table-iris, echo=FALSE}
+iris %>%
+  select(-Species) %>%  #drop the species column
+  head(10) %>%          #show just the first 10 rows
+  knitr::kable(format = "latex", booktabs = TRUE, caption = "The favorite iris' of Tenacious D.")
+```
+````
+
+We pipe the data we want to show into the kable function from the knitr package, and specify that we want the format to be latex, `booktabs = TRUE` will make it formatted nicely, and we also give it a caption.
+
+If we knit and inspect the .tex, we see that it has been translated into this corresponding LaTeX:
+
+```
+\begin{table}
+	\caption{\label{tab:table-iris}The favorite iris' of Tenacious D.}
+	\centering
+	\begin{tabular}[t]{rrrr}
+		\toprule
+		Sepal.Length & Sepal.Width & Petal.Length & Petal.Width\\
+		\midrule
+		5.1 & 3.5 & 1.4 & 0.2\\
+		4.9 & 3.0 & 1.4 & 0.2\\
+		4.7 & 3.2 & 1.3 & 0.2\\
+		4.6 & 3.1 & 1.5 & 0.2\\
+		5.0 & 3.6 & 1.4 & 0.2\\
+		\addlinespace
+		5.4 & 3.9 & 1.7 & 0.4\\
+		4.6 & 3.4 & 1.4 & 0.3\\
+		5.0 & 3.4 & 1.5 & 0.2\\
+		4.4 & 2.9 & 1.4 & 0.2\\
+		4.9 & 3.1 & 1.5 & 0.1\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+```
+
+The output looks like this:
+![step 5 colwidth](figures/step5-colwidth.png "Step 5 colwidth")
+
+Awesome! No more errors through whatever obscure means you'd otherwise be getting your data into a LaTeX table.
+
+Finally, if we want a two-column format of our table by setting the environment to `\table*`, it turns out that there's not at the moment any easy way to do this from within R Markdown (the `fig.env` chunk option doesn't work with tables when we use the kable function). 
+
+However, since the formatting of tables in LaTeX is quite fiddly anyway, this is probably not to much of an issue. What we'd do is to simply generate the almost-done table as above, then just manually adjust the .tex file and compile it again to pdf (you could do this from within RStudio). So I might just go to that .tex then add the asterisk to `\table*`, and maybe remove `\addlinespace`, to get the following when compiling to pdf:
+
+![step 5 two-colwidth](figures/step5-two-col-width.png "Step 5 step5-two-col-width")
+
 
 ## Step 6. Referencing our figures and tables
 The maturation of the song over time is shown in Figure \@ref(fig:tribute-plot). 
