@@ -33,13 +33,11 @@ plot(pressure)
 ## Synopsis
 The song chronicles the band members' encounter with a demon who demands the duo play "the best song in the world" or have their souls eaten. Having nothing to lose from trying, they play "the first thing that came to our heads", and it "just so happened to be the best song in the world."[@Wardak2002]
 
+Given the "Stairway to Heaven" interlude in the original TV series version, along with the similarity of the chord progression in both songs, Tribute at first implies that the best song in the world is indeed that song. However, the lyrics make clear that Tribute sounds nothing like the song they came up with to please the demon; as Black describes: "And the peculiar thing is this my friends: The song we sang on that fateful night, it didn't actually sound anything like this song."
+
 ```{r table-iris, echo=FALSE}
 iris %>%
   select(-Species) %>%
   head(10) %>%
   knitr::kable(format = "latex", booktabs = TRUE, caption = "The favorite iris' of Tenacious D.")
 ```
-
-
-Given the "Stairway to Heaven" interlude in the original TV series version, along with the similarity of the chord progression in both songs, Tribute at first implies that the best song in the world is indeed that song. However, the lyrics make clear that Tribute sounds nothing like the song they came up with to please the demon; as Black describes: "And the peculiar thing is this my friends: The song we sang on that fateful night, it didn't actually sound anything like this song."
-

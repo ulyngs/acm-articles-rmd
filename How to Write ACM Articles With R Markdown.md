@@ -1,21 +1,21 @@
 # How to Write ACM Articles With R Markdown (Or: Why the `rticles` Package Did Not Help Me)
 
-I love [R Markdown] (https://bookdown.org/yihui/rmarkdown/). I use R for almost all my data analyses and visualisations these days, and Rmd files helps me keep an interactive lab notebook that reminds me of the steps I took --- and why --- while making it quick and easy to reproduce everything.
+I love [R Markdown](https://bookdown.org/yihui/rmarkdown/). I use R for almost all my data analyses and visualisations these days, and Rmd files helps me keep an interactive lab notebook that reminds me of the steps I took --- and why --- while making it quick and easy to reproduce everything.
 
-Like many others (e.g. [here] (https://rosannavanhespenresearch.wordpress.com/2016/02/03/writing-your-thesis-with-r-markdown-1-getting-started/), [here] (https://eddjberry.netlify.com/post/writing-your-thesis-with-bookdown/), and [here] (https://github.com/benmarwick/huskydown)), I too am planning to write my entire PhD thesis in R Markdown. The benefits are obvious, as other blog posts and online publications have already pointed out: First, you reduce the risk of mistakes by doing your academic write-up in the very same file as you use to produce the analysis outputs - when you update analysis code, the output plots are automatically updated too (this [wonderful YouTube video] (https://youtu.be/s3JldKoA0zw) will remind you that this is important and how awesome you will feel when you do things write). Second, you save yourself effort if you e.g. want to publish your thesis as an ebook or physical book afterwards, or if you usually write in LaTeX but collaborate with MS Word users: From the same R Markdown file, you can export to the format you need. 
+Like many others (e.g. [here](https://rosannavanhespenresearch.wordpress.com/2016/02/03/writing-your-thesis-with-r-markdown-1-getting-started/), [here](https://eddjberry.netlify.com/post/writing-your-thesis-with-bookdown/), and [here](https://github.com/benmarwick/huskydown)), I too am planning to write my entire PhD thesis in R Markdown. The benefits are obvious, as other blog posts and online publications have already pointed out: First, you reduce the risk of mistakes by doing your academic write-up in the very same file as you use to produce the analysis outputs - when you update analysis code, the output plots are automatically updated too (this [wonderful YouTube video](https://youtu.be/s3JldKoA0zw) will remind you that this is important and how awesome you will feel when you do things write). Second, you save yourself effort if you e.g. want to publish your thesis as an ebook or physical book afterwards, or if you usually write in LaTeX but collaborate with MS Word users: From the same R Markdown file, you can export to the format you need. 
 
-So, like many others (this [blog post by Colin Bousige] (https://colinbousige.github.io/post/rmarkdown/) I found especially helpful!), I want to transition entirely to writing in R Markdown also when writing submissions to academic conferences and journals.
+So, again like many others (this [blog post by Colin Bousige](https://colinbousige.github.io/post/rmarkdown/) I found especially helpful!), I want to transition entirely to writing in R Markdown also when writing submissions to academic conferences and journals.
 
-In my research group, one of the most important outlets for our work is ACM CHI (Conference on Human Factors in Computing Systems). However, I ended up spending several frustrated hours wrapping my head around how to use the ACM LaTeX template properly. RStudio has made the `rticles` package which is meant to include templates for writing R Markdown documents formatted to the submission standards of loads or academic journals and conferences, including a [generic ACM template] (https://github.com/rstudio/rticles/tree/master/inst/rmarkdown/templates/acm_article). However, it was not obvious to me how the exact templates were arrived at (many are crowd-contributed and does not seem to come with any documentation for the individual templates), and the outputted result didn't seem to correspond exactly to the usual official ACM LaTeX templates anyway!
+In my research group, one of the most important outlets for our work is ACM CHI (Conference on Human Factors in Computing Systems). However, I ended up spending several frustrated hours wrapping my head around how to use the ACM LaTeX template properly. RStudio has made the `rticles` package which is meant to include templates for writing R Markdown documents formatted to the submission standards of loads or academic journals and conferences, including a [generic ACM template](https://github.com/rstudio/rticles/tree/master/inst/rmarkdown/templates/acm_article). However, it was not obvious to me how the exact templates were arrived at (many are crowd-contributed and does not seem to come with any documentation for the individual templates), and the outputted result didn't seem to correspond exactly to the usual official ACM LaTeX templates anyway!
 
 Besides, for the next CHI conference, it turns out the ACM just updated the templates (at the time of writing, the last update to the master templates happened on July 17, 2018, i.e. today!). So the question remains: **What is the route of least effort for using R Markdown to write articles for CHI?**
 
 Turns out the answer is very simple, but it took me way longer to figure out that it should have done, as I couldn't really find the right advice anywhere. **Here's how to do it:**
 
 ## Step 1. Understand how to use (the ACM) LaTeX template with R Markdown
-So first things first. In order to use the ACM template, we'd download the latest version [from here] (https://www.acm.org/publications/proceedings-template) - but for the purposes of this tutorial, clone or download [this GitHub repo] (https://github.com/ulyngs/acm-articles-rmd). Then open the R Project file in the 'step1' folder.
+So first things first. In order to use the ACM template, we'd download the latest version [from here](https://www.acm.org/publications/proceedings-template) - but for the purposes of this tutorial, clone or download [this GitHub repo](https://github.com/ulyngs/acm-articles-rmd). Then open the R Project file in the 'step1' folder.
 
-![step 1 files](figures/step1-files.png "Step 1 files")
+![step 1 files](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step1-files.png "Step 1 files")
 
 This folder contains the essential files to make the sigchi proceedings template work (it's just a subset of the files in the acmart-master folder that you can download on the ACM page linked to above):
 - acmart.cls provides the LaTeX class for the new ACM master template
@@ -36,7 +36,7 @@ output:
 (Note that I use `bookdown::pdf_book:` here instead of simply `pdf_document` because bookdown extends the referencing capability of R Markdown, so that we can reference figures in a way that can be exported to also interactive ebook formats rather than only to LaTeX.)
 
 If you click 'Knit', the CHI proceedings template with sample content should compile correctly:
-![step 1 compiled](figures/step1-compiled.png "Step 1 compiled")
+![step 1 compiled](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step1-compiled.png "Step 1 compiled")
 
 ## Step 2. Adjust the LaTeX template to include your content
 Ok, so now we know how to compile to an arbitrary template without putting in any content. What we need to know now is how to automatically put in the content we write in R Markdown.
@@ -58,10 +58,10 @@ I concluded that the route of least effort is the following:
 All other metadata (author names, whether you need title notes, etc.) we will just set directly in sample-sigchi.tex - it's not worth the effort (I think) to set up variables in your YAML header for this.
 
 Let's see what we get when we knit the result:
-![step 2 compiled first page](figures/step2-compiled-page1.png "Step 2 compiled first page")
+![step 2 compiled first page](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step2-compiled-page1.png "Step 2 compiled first page")
 
 Ok, so title and abstract is plugged in correctly from the YAML header. Let's look at page 2:
-![step 2 compiled second page](figures/step2-compiled-page2.png "Step 2 compiled second page")
+![step 2 compiled second page](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step2-compiled-page2.png "Step 2 compiled second page")
 
 Argh! The body content as a whole is input correctly, but the in-text citations are not quite formatted the way we want, nor is the reference list shown in that nice ACM style. What's going on?
 
@@ -82,7 +82,7 @@ Not quite what we want! Let's fix this.
 ## Step 3. Make sure citations are shown correctly
 Turns out this is easy. Go to the YAML header and under `bookdown::pdf_book:` add (with indentation) `citation_package: natbib`. This will make use of the LaTeX natbib package to insert the citations into the .tex, instead of inserting them as plain text. Let's knit again to see if it worked:
 
-![step 3 compiled](figures/step3-compiled.png "Step 3 compiled")
+![step 3 compiled](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step3-compiled.png "Step 3 compiled")
 
 Yup, it looks right. Let's have a look at the .tex to see what's actually going on:
 ```
@@ -119,7 +119,7 @@ If we knit and inspect the generated .tex file, we see that this chunk was trans
 I.e. R Markdown generates the plot, creates a subfolder and saves the plot in there, then includes this generated plot in the .tex file. Magic! (Not to mention **crucial steps to automate to avoid errors in the research process**!)
 
 And the output looks as we'd expect:
-![step 4 colwidth](figures/step4-colwidth.png "Step 4 colwidth")
+![step 4 colwidth](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step4-colwidth.png "Step 4 colwidth")
 
 ### Two-column figures
 The acm-article template also tells us that to include a figure that spans two columns, we want to put it in a `figure*` environment rather than simply a `figure` environment. How do we do this? Easy, we just add `fig.env='figure*'` to the chunk options:
@@ -143,7 +143,7 @@ If we inspect the .tex file, we can see that this, as we'd expect, is translated
 ```
 
 And the output again looks correct (it's floating to a new page in our case):
-![step 4 two-colwidth](figures/step4-two-colwidth.png "Step 4 two-colwidth")
+![step 4 two-colwidth](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step4-two-colwidth.png "Step 4 two-colwidth")
 
 ## Step 5. Handling tables
 To automatically grab data from our analyses and put it into the paper, we'll use the ['kable' function](https://bookdown.org/yihui/rmarkdown/r-code.html#tables).
@@ -198,7 +198,7 @@ If we knit and inspect the .tex, we see that it has been translated into this co
 ```
 
 The output looks like this:
-![step 5 colwidth](figures/step5-colwidth.png "Step 5 colwidth")
+![step 5 colwidth](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step5-colwidth.png "Step 5 colwidth")
 
 Awesome! No more errors through whatever obscure means you'd otherwise be getting your data into a LaTeX table.
 
@@ -206,7 +206,7 @@ Finally, if we want a two-column format of our table by setting the environment 
 
 However, since the formatting of tables in LaTeX is quite fiddly anyway, this is probably not to much of an issue. What we'd do is to simply generate the almost-done table as above, then just manually adjust the .tex file and compile it again to pdf (you could do this from within RStudio). So I might just go to that .tex then add the asterisk to `\table*`, and maybe remove `\addlinespace`, to get the following when compiling to pdf:
 
-![step 5 two-colwidth](figures/step5-two-col-width.png "Step 5 step5-two-col-width")
+![step 5 two-colwidth](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step5-two-col-width.png "Step 5 step5-two-col-width")
 
 
 ## Step 6. Referencing our figures and tables
@@ -223,7 +223,7 @@ The maturation of the song over time is shown in Figure \@ref(fig:tribute-plot).
 ```
 
 Either way, the .tex output is the same, and so is the result:
-![step 6](figures/step6.png "Step 6")
+![step 6](https://raw.githubusercontent.com/ulyngs/acm-articles-rmd/master/figures/step6.png "Step 6")
 
 
 ## Step 6. Celebrate!
