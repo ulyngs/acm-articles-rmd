@@ -39,5 +39,5 @@ Given the "Stairway to Heaven" interlude in the original TV series version, alon
 iris %>%
   select(-Species) %>%
   head(10) %>%
-  knitr::kable(format = "latex", booktabs = TRUE, caption = "The favorite iris' of Tenacious D.")
+  knitr::kable(format = "latex", booktabs = TRUE, caption = "The favorite iris' of Tenacious D.", table.env='table*')
 ```
